@@ -12,7 +12,7 @@ import org.javacord.api.event.message.MessageCreateEvent;
 
 public class ServerHandler implements Runnable {
 	
-	// List de chaines utilisées
+	// List de chaines utilisÃ©es
 	private final String value_first = ":o:";
 	private final String value_second = ":x:";
 	private final String value_empty = ":black_large_square:";
@@ -22,21 +22,21 @@ public class ServerHandler implements Runnable {
 	private final String command_help = "!mhelp";
 	private final String game_surrender = "Drapeau blanc. Abandon de ";
 	private final String game_winner = "Gagnant : ";
-	private final String game_tie = "Egalité.";
-	private final String game_timeout = "Vous avez été trop lent... Vous avez donc perdu.";
+	private final String game_tie = "EgalitÃ©.";
+	private final String game_timeout = "Vous avez Ã©tÃ© trop lent... Vous avez donc perdu.";
 	private final String error_toomanyplayers = "Uniquement deux personnes peuvent s'affronter.";
-	private final String error_nogame = "Aucune partie n'est lancée... Utilisez "+ command_start + " pour en commencer une.";
+	private final String error_nogame = "Aucune partie n'est lancÃ©e... Utilisez "+ command_start + " pour en commencer une.";
 	private final String error_notaplayer = " c'est pas ta guerre.";
-	private final String error_notaposition = "Entrée invalide.";
-	private final String error_notyourturn = "Ce n'est pas à vous de jouer.";
-	private final String error_bot = "Désolé, les bots ne peuvent pas jouer.";
-	private final String error_opengame = "Une partie est déjà en cours,";
-	private final String defie = " vous avez été défié au morpion par ";
-	private final String help = "```" + command_start + " @user - lance une partie\n" + command_play + " int int - joue sur les positions données (0->2 pour la ligne, 0->2 pour la colonne)\n"
+	private final String error_notaposition = "EntrÃ©e invalide.";
+	private final String error_notyourturn = "Ce n'est pas Ã  vous de jouer.";
+	private final String error_bot = "DÃ©solÃ©, les bots ne peuvent pas jouer.";
+	private final String error_opengame = "Une partie est dÃ©jÃ  en cours,";
+	private final String defie = " vous avez Ã©tÃ© dÃ©fiÃ© au morpion par ";
+	private final String help = "```" + command_start + " @user - lance une partie\n" + command_play + " int int - joue sur les positions donnÃ©es (0->2 pour la ligne, 0->2 pour la colonne)\n"
 			+ command_surrender + " - abandon de la partie\n" + command_help + " - affiche ce message\n\nLe joueur qui lance la partie commence."
-					+ "\nSi vous n'avez pas joué dans les 3 minutes qui suivent, vous êtes déclaré perdant.```";
+					+ "\nSi vous n'avez pas jouÃ© dans les 3 minutes qui suivent, vous Ãªtes dÃ©clarÃ© perdant.```";
 	
-	// Attributs nécessaires
+	// Attributs nÃ©cessaires
 	private Grid grid = null;
 	private User player1 = null;
 	private User player2 = null;
@@ -56,11 +56,11 @@ public class ServerHandler implements Runnable {
 		this.api = api;
 		this.server = server;
 		timer = new Timer();
-		System.out.println("Connecté sur le serveur " + server.getId());
+		System.out.println("ConnectÃ© sur le serveur " + server.getId());
 	}
 	
 	public void run() {
-		// Création d'un listener
+		// CrÃ©ation d'un listener
         server.addMessageCreateListener(event -> {
         	if(event.getMessageAuthor() != api.getYourself()) {
         		if(event.getMessageContent().startsWith(command_start)) {
@@ -82,7 +82,7 @@ public class ServerHandler implements Runnable {
 	
     /**
      * Lancement d'une partie
-     * @param event Evenement ayant déclanché cet appel
+     * @param event Evenement ayant dÃ©clanchÃ© cet appel
      */
     private void startGame(MessageCreateEvent event) {
     	List<User> listUser = event.getMessage().getMentionedUsers();
@@ -103,7 +103,7 @@ public class ServerHandler implements Runnable {
     
     /**
      * Lance un timer de 3 minutes, efface la partie en cours si le joueur ne joue pas
-     * @param channel Channel sur lequel écrire le message
+     * @param channel Channel sur lequel Ã©crire le message
      */
     private void startTimer(TextChannel channel) {
     	timertask = new TimerGame(channel, this);
@@ -111,9 +111,9 @@ public class ServerHandler implements Runnable {
     }
     
     /**
-     * Regarde si les astres sont alignés pour le lancement d'une partie
-     * @param listUser Liste des utilisateurs taggés dans la requête de partie
-     * @param author Auteur de la requête
+     * Regarde si les astres sont alignÃ©s pour le lancement d'une partie
+     * @param listUser Liste des utilisateurs taggÃ©s dans la requÃ¨te de partie
+     * @param author Auteur de la requÃªte
      * @param channel Channel de discussion
      * @return true si la partie est possible, false sinon
      */
@@ -123,7 +123,7 @@ public class ServerHandler implements Runnable {
     		return false;
     	}
     	if(listUser.isEmpty()) {
-    		sendError(channel,"Il n'est pas encore possible de jouer face à moi... Merci de choisir un adversaire.");
+    		sendError(channel,"Il n'est pas encore possible de jouer face Ã  moi... Merci de choisir un adversaire.");
 			return false;
 		}
     	if (author.isBot() || listUser.get(0).isBot()){
@@ -139,11 +139,11 @@ public class ServerHandler implements Runnable {
     
     /**
      * Participation a la partie
-     * @param event Evenement ayant déclanché cet appel
+     * @param event Evenement ayant dÃ©clenchÃ© cet appel
      */
     private void playGame(MessageCreateEvent event) {
     	if(grid == null) {
-    		// Aucune partie n'est lancée
+    		// Aucune partie n'est lancÃ©e
 			sendError(event.getChannel(), error_nogame);
 		} else {
     		// Participation au morpion
@@ -151,13 +151,13 @@ public class ServerHandler implements Runnable {
     		try {
 	    		if(event.getMessageAuthor().getId() == nextPlayer.getId()) {
 	    			timertask.cancel();
-	    			// On vérifie le nombre d'arguments
+	    			// On vÃ©rifie le nombre d'arguments
 	    			if(data.length < 3) {
 	    				sendError(event.getChannel(), error_notaposition);
 	    			}else {
 	    				Integer posx = Integer.parseInt(data[1]);
 	    				Integer posy = Integer.parseInt(data[2]);
-	    				// On vérifie les valeurs des entrées
+	    				// On vÃ©rifie les valeurs des entrÃ©es
 	    				if(posx < 0 || posx > 2 || posy < 0 || posy > 2) {
 	    					sendError(event.getChannel(), error_notaposition);
 	    				} else {
@@ -196,9 +196,9 @@ public class ServerHandler implements Runnable {
     }
     
     /**
-     * Affichage de la phrase correspondant au paramètre de résultat
-     * @param result -1 = erreur, 0 = rien, 1 = victoire j1, 2 = victoire j2, 3 = egalité
-     * @param event Evenement ayant déclenché cet appel
+     * Affichage de la phrase correspondant au paramÃ¨tre de rÃ©sultat
+     * @param result -1 = erreur, 0 = rien, 1 = victoire j1, 2 = victoire j2, 3 = egalitÃ©
+     * @param event Evenement ayant dÃ©clenchÃ© cet appel
      */
     private void displayResult(int result, MessageCreateEvent event) {
     	if(result == -1) {
@@ -214,7 +214,7 @@ public class ServerHandler implements Runnable {
     
     /**
      * Abandon de la partie
-     * @param event Evenement ayant déclanché l'abandon
+     * @param event Evenement ayant dÃ©clenchÃ© l'abandon
      */
     private void surrenderGame(MessageCreateEvent event) {
     	if(grid == null) {
@@ -233,7 +233,7 @@ public class ServerHandler implements Runnable {
     }
     
     /**
-     * Les variables nécessaires à une partie sont mises à null
+     * Les variables nÃ©cessaires Ã  une partie sont mises Ã  null
      */
     protected void finishGame() {
     	grid = null;
@@ -244,7 +244,7 @@ public class ServerHandler implements Runnable {
     
     /**
      * Retourne la grille kawaiiiiiiii ahahahaahah tamer
-     * @return La grille formatée pour Discord
+     * @return La grille formatÃ©e pour Discord
      */
     private String getDisplayableGrid() {
     	return grid.toString().replaceAll("1", value_first).replaceAll("2", value_second).replaceAll("0", value_empty);

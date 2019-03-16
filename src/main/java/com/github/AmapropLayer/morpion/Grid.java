@@ -16,9 +16,9 @@ public class Grid {
 	/**
 	 * 
 	 * @param numPlayer joueur 1 ou 2
-	 * @param xcoords coordonnées en x
-	 * @param ycoords coordonnées en y
-	 * @return -1 = erreur / 0 = pas de gagnant / 1 = joueur 1 gagne / 2 = joueur 2 gagne / 3 = egalité
+	 * @param xcoords coordonnÃ©es en x
+	 * @param ycoords coordonnÃ©es en y
+	 * @return -1 = erreur / 0 = pas de gagnant / 1 = joueur 1 gagne / 2 = joueur 2 gagne / 3 = egalitÃ©
 	 */
 	public int play(int numPlayer, int xcoords, int ycoords) {
 		int position;
@@ -41,8 +41,8 @@ public class Grid {
 	}
 	
 	/**
-	 * Fonction de vérification de la grille
-	 * @return 0 = pas de gagnant / 1 = joueur 1 a gagné / 2 = joueur 2 a gagné / 3 = egalité
+	 * Fonction de vÃ©rification de la grille
+	 * @return 0 = pas de gagnant / 1 = joueur 1 a gagnÃ© / 2 = joueur 2 a gagnÃ© / 3 = egalitÃ©
 	 */
 	public int verifyGrid() {
 		int winner = 0;
@@ -64,7 +64,7 @@ public class Grid {
 			}
 		}
 		
-		// On regarde si il n'y a pas égalité
+		// On regarde si il n'y a pas Ã©galitÃ©
 		if(winner == 0) {
 			int i=0;
 			boolean trouve = false;

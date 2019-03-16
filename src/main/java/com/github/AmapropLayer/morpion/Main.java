@@ -14,7 +14,7 @@ public class Main {
 	
     public static void main(String[] args) {
     	
-    	// Récupération du Token Discord
+    	// RÃ©cupÃ©ration du Token Discord
     	String token = null;
     	try {
     		FileReader fr = new FileReader(filename);
@@ -28,7 +28,7 @@ public class Main {
     		System.err.println("Error reading file '" + filename + "'.");
     	}
     	
-    	// Connexion à Discord
+    	// Connexion Ã  Discord
     	// String token = "NTQwODg4NDkyNDA2NzM0ODc5.DzXggQ.OizEFg-euzs4fjxXR7zla6a7vXM";
     	
     	new DiscordApiBuilder().setToken(token).login().thenAccept(api -> {
