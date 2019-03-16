@@ -51,9 +51,7 @@ Kinda empty aswell.
 
 ## Authors
 
-* **Aymeric PINEL** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
-
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
+* **Aymeric PINEL** - [AmapropLayer](https://github.com/AmapropLayer)
 
 ## License
 
