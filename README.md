@@ -11,7 +11,7 @@ A line should appear with a link to invite your bot to a server.
 
 ### Prerequisites
 
-You need something to be able to run Java and Maven.
+You need something to be able to run Java 1.8 and Maven.
 Nothing else should be required.
 
 ### Installing
@@ -20,8 +20,14 @@ Once you build the .jar using Maven, just execute it.
 
 ```
 mvn package
-java -jar morpion.jar
 ```
+
+Then, move the jar file created (in target/) close to your token.txt and launch the app
+
+```
+java -jar morpion-0.0.1.jar
+```
+
 
 ## Running the tests
 
