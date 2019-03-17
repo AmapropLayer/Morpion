@@ -1,6 +1,6 @@
 # Morpion
 
-A bot to play noughts and crosses on a discord server, using Javacord.
+A bot to play noughts and crosses on a Discord server, using Javacord.
 
 ## Getting Started
 
@@ -39,7 +39,7 @@ Nothing to see here once again
 
 ## Deployment
 
-Just launch the jar, do not forget the tonke.txt file.
+Just launch the jar, do not forget the token.txt file.
 
 ## Built With
 

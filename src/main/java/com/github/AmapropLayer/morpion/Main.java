@@ -29,8 +29,6 @@ public class Main {
     	}
     	
     	// Connexion à Discord
-    	// String token = "NTQwODg4NDkyNDA2NzM0ODc5.DzXggQ.OizEFg-euzs4fjxXR7zla6a7vXM";
-    	
     	new DiscordApiBuilder().setToken(token).login().thenAccept(api -> {
     		for(Server s : api.getServers()) {
     			Thread t = new Thread(new ServerHandler(api, s));
